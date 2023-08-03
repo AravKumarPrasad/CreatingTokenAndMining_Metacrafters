@@ -81,22 +81,4 @@ contract MyToken {
         emit Burn(msg.sender, _value);
     }
 
-    function increaseAllowance(address _spender, uint256 _addedValue) external {
-        require(_spender != address(0), "Invalid spender address");
-
-        allowance[msg.sender][_spender] += _addedValue;
-
-        emit Approval(msg.sender, _spender, allowance[msg.sender][_spender]);
-    }
-
-    function decreaseAllowance(address _spender, uint256 _subtractedValue) external {
-        require(_spender != address(0), "Invalid spender address");
-        uint256 currentAllowance = allowance[msg.sender][_spender];
-        require(currentAllowance >= _subtractedValue, "Decreased allowance below zero");
-
-        allowance[msg.sender][_spender] = currentAllowance - _subtractedValue;
-
-        emit Approval(msg.sender, _spender, allowance[msg.sender][_spender]);
-    }
-
 }
